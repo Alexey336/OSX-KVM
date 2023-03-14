@@ -1,4 +1,4 @@
-### This fork was made for my personal needs and may not be suitable for your. Instead, use the [original author's project](https://github.com/kholia/OSX-KVM)
+### This fork was made for my personal needs and may not be suitable for you. Instead, use the [original author's project](https://github.com/kholia/OSX-KVM)
 
 ### Note
 
