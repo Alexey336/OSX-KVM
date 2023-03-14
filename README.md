@@ -1,3 +1,5 @@
+### This fork was made for my personal needs and may not be suitable for your. Instead, use the [original author's project](https://github.com/kholia/OSX-KVM)
+
 ### Note
 
 This `README.md` documents the process of creating a `Virtual Hackintosh`
