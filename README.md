@@ -94,7 +94,7 @@ Phenom II X3 720 does not. Ryzen processors work just fine.
   ```
   cd ~
 
-  git clone --depth 1 --recursive https://github.com/kholia/OSX-KVM.git
+  git clone --depth 1 --recursive https://github.com/Alexey336/OSX-KVM.git
 
   cd OSX-KVM
   ```
