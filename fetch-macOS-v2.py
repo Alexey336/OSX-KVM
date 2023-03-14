@@ -470,7 +470,7 @@ def main():
 
     # test locally using args.shortname = 'mojave'
     if not args.shortname or args.shortname == '':
-        answer = input('\nChoose a product to download (1-%s): ' % len(products))
+        answer = 2
         try:
             index = int(answer) - 1
             if index < 0:
