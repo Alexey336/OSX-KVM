@@ -56,6 +56,8 @@ args=(
   # -netdev user,id=net0 -device vmxnet3,netdev=net0,id=net0,mac=52:54:00:c9:18:27  # Note: Use this line for High Sierra
   -monitor stdio
   -device VGA,vgamem_mb=128
+  -display none
+  -vnc :1 -k en-us
 )
 
 qemu-system-x86_64 "${args[@]}"
