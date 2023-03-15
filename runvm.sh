@@ -13,7 +13,7 @@
 # NOTE: Tweak the "MY_OPTIONS" line in case you are having booting problems!
 ############################################################################
 
-MY_OPTIONS="+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"
+MY_OPTIONS="+sse3,+sse4.2,+aes,+xsave,+avx,+xsaveopt,+xsavec,+xgetbv1,+avx2,+bmi2,+smep,+bmi1,+fma,+movbe,+invtsc,+avx2,check"
 
 # This script works for Big Sur, Catalina, Mojave, and High Sierra. Tested with
 # macOS 10.15.6, macOS 10.14.6, and macOS 10.13.6.
@@ -29,7 +29,7 @@ OVMF_DIR="."
 # shellcheck disable=SC2054
 args=(
   -enable-kvm -m "$ALLOCATED_RAM" -cpu Icelake-Client-v2,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,"$MY_OPTIONS"
-  -machine q35
+  -machine q35,accel=kvm
   -usb -device usb-kbd -device usb-tablet
   -smp "$CPU_THREADS",cores="$CPU_CORES",sockets="$CPU_SOCKETS"
   -device usb-ehci,id=ehci
@@ -54,10 +54,9 @@ args=(
   # -netdev tap,id=net0,ifname=tap0,script=no,downscript=no -device virtio-net-pci,netdev=net0,id=net0,mac=52:54:00:c9:18:27
   -netdev user,id=net0 -device virtio-net-pci,netdev=net0,id=net0,mac=52:54:00:c9:18:27
   # -netdev user,id=net0 -device vmxnet3,netdev=net0,id=net0,mac=52:54:00:c9:18:27  # Note: Use this line for High Sierra
-  -monitor stdio
-  -device VGA,vgamem_mb=128
-  -display none
-  -vnc :1 -k en-us
+  -vga qxl
+  -monitor telnet:127.0.0.1:5801,server,nowait
+  -nographic -vnc :1 -k en-us
 )
 
 qemu-system-x86_64 "${args[@]}"
