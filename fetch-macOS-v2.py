@@ -470,7 +470,7 @@ def main():
 
     # test locally using args.shortname = 'mojave'
     if not args.shortname or args.shortname == '':
-        answer = 1
+        answer = 2
         try:
             index = int(answer) - 1
             if index < 0:
