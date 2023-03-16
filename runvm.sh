@@ -29,7 +29,7 @@ OVMF_DIR="."
 # shellcheck disable=SC2054
 args=(
   -enable-kvm -m "$ALLOCATED_RAM" -cpu Icelake-Client-v2,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,"$MY_OPTIONS"
-  -machine q35,accel=kvm
+  -machine q35,accel=kvm,smm=off,vmport=off
   -usb -device usb-kbd -device usb-tablet
   -smp "$CPU_THREADS",cores="$CPU_CORES",sockets="$CPU_SOCKETS"
   -device usb-ehci,id=ehci
@@ -43,7 +43,7 @@ args=(
   -drive if=pflash,format=raw,readonly=on,file="$REPO_PATH/$OVMF_DIR/OVMF_CODE.fd"
   -drive if=pflash,format=raw,file="$REPO_PATH/$OVMF_DIR/OVMF_VARS-1024x768.fd"
   -smbios type=2
-  -device ich9-intel-hda -device hda-duplex
+  #-device ich9-intel-hda -device hda-duplex
   -device ich9-ahci,id=sata
   -drive id=OpenCoreBoot,if=none,snapshot=on,format=qcow2,file="$REPO_PATH/OpenCore/OpenCore.qcow2"
   -device ide-hd,bus=sata.2,drive=OpenCoreBoot
@@ -54,8 +54,8 @@ args=(
   # -netdev tap,id=net0,ifname=tap0,script=no,downscript=no -device virtio-net-pci,netdev=net0,id=net0,mac=52:54:00:c9:18:27
   -netdev user,id=net0 -device virtio-net-pci,netdev=net0,id=net0,mac=52:54:00:c9:18:27
   # -netdev user,id=net0 -device vmxnet3,netdev=net0,id=net0,mac=52:54:00:c9:18:27  # Note: Use this line for High Sierra
-  -vga qxl
-  -monitor telnet:127.0.0.1:5801,server,nowait
+  -vga none
+  -device qxl-vga,ram_size=65536,vram_size=65536,vgamem_mb=64
   -nographic -vnc :1 -k en-us
 )
 
